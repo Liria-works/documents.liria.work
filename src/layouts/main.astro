@@ -1,0 +1,67 @@
+---
+import { AstroFont } from "astro-font";
+import { SEO } from "astro-seo";
+
+import Header from "./header.astro";
+// import Footer from "./footer.astro";
+
+const title = "Liria Documents";
+const description = "";
+---
+
+<html lang="en">
+    <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <SEO
+            charset="utf-8"
+            title={title}
+            description={description}
+            openGraph={{
+                basic: {
+                    title: title,
+                    type: "",
+                    image: "",
+                },
+            }}
+            twitter={{
+                creator: "@liria_work",
+                card: "summary",
+                image: "",
+                title: title,
+                description: description,
+            }}
+            extend={{
+                link: [{ rel: "icon", href: "/favicon.ico" }],
+                meta: [
+                    {
+                        name: "viewport",
+                        content: "width=device-width, initial-scale=1",
+                    },
+                ],
+            }}
+        />
+        <AstroFont
+            config={[
+                {
+                    src: [],
+                    name: "Montserrat",
+                    // Google Fonts URL
+                    googleFontsURL:
+                        "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap",
+                    preload: true,
+                    display: "swap",
+                    selector: "body",
+                    fallback: "sans-serif",
+                },
+            ]}
+        />
+    </head>
+
+    <body class="text-neutral-100 bg-[#0b0b0b] px-8 py-5">
+        <div class="w-full flex flex-col mx-auto">
+            <Header />
+            <slot />
+            <!-- <Footer /> -->
+        </div>
+    </body>
+</html>

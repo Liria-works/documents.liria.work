@@ -1,0 +1,48 @@
+---
+import Main from "../layouts/main.astro";
+---
+
+<Main>
+    <div w-full flex px-3 gap-10>
+        <div w-56 pt-12 pb-8>
+            <p text-sm>目次</p>
+        </div>
+
+        <div h-auto w-px mt-6 bg-neutral-800></div>
+
+        <div flex flex-col gap-8 pt-12 pb-8>
+            <article>
+                <h1 text-3xl font-bold>MDX</h1>
+                <p text-lg>
+                    このドキュメントは、
+                    <a
+                        href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-blue-500 hover:underline"
+                    >
+                        CC BY-NC-SA 4.0
+                    </a>
+                    で提供されています。
+                </p>
+            </article>
+
+            <div>
+                <a
+                    href="/"
+                    flex
+                    items-center
+                    gap-2
+                    hover:underline
+                    underline-offset-5
+                    underline-dashed
+                    text-neutral-400
+                    hover:text-neutral-200
+                >
+                    <span i-lucide-square-arrow-out-up-right size-4></span>
+                    <p text-sm>修正を提案</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</Main>

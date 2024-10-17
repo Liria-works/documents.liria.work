@@ -1,0 +1,37 @@
+---
+const { label, icon, href, bold, trailing } = Astro.props;
+
+let ICON = icon;
+let newTab = false;
+
+if (href) {
+    try {
+        new URL(href);
+        newTab = true;
+    } catch {
+        newTab = false;
+    }
+}
+
+if (newTab && ICON === undefined) {
+    ICON = "i-lucide-move-up-right";
+}
+---
+
+<div class={`${trailing ? "w-full" : "w-fit"}`}>
+    <a
+        href={href}
+        target={newTab ? "_blank" : "_self"}
+        rel={newTab ? "noopener noreferrer" : ""}
+        class={`flex items-center gap-2 text-neutral-400 hover:text-neutral-200 ${trailing && "justify-between"}`}
+    >
+        {ICON && !trailing && <span class={`size-4 ${ICON}`} />}
+        <p
+            class={`${bold ? "text-md font-bold text-neutral-100" : "text-sm font-normal"}`}
+        >
+            {label}
+        </p>
+
+        {ICON && trailing && <span class={`size-4 ${ICON}`} />}
+    </a>
+</div>

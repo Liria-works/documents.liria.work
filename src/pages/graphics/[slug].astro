@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import { getSlugs, getArticles } from "../../lib/graphics";
+import Article from "../../layouts/article.astro";
+import Link from "../../components/link.astro";
+
+export async function getStaticPaths() {
+    return await getSlugs();
+}
+
+const articles = await getArticles();
+const article = articles.contents.find(
+    (article) => article.id === Astro.params.slug,
+);
+
+if (!article) return Astro.redirect("/404");
+---
+
+<Article>
+    <div gap-8 flex="~ col">
+        <div gap-2 flex="~ col">
+            <h1 text-3xl font-bold>{article.title.ja}</h1>
+            <p text-neutral-400>
+                {
+                    new Date(article.createdAt).toLocaleString("ja-JP", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                    })
+                } に公開
+            </p>
+        </div>
+
+        <div mb-4 gap-2 flex="~ col">
+            <Image
+                src={article.thumbnail.url}
+                alt={article.title.en}
+                width="256"
+                height="256"
+                loading="eager"
+                class="w-[256px] object-cover"
+            />
+
+            <Link
+                href={`https://booth.pm/ja/items/${article.booth}`}
+                label="BOOTH 販売ページ"
+                icon="i-custom-booth?mask"
+            />
+        </div>
+
+        <p whitespace-pre-wrap>{article.description}</p>
+    </div>
+</Article>

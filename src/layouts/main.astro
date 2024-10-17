@@ -3,7 +3,7 @@ import { AstroFont } from "astro-font";
 import { SEO } from "astro-seo";
 
 import Header from "./header.astro";
-// import Footer from "./footer.astro";
+import Footer from "./footer.astro";
 
 const title = "Liria Documents";
 const description = "";
@@ -58,10 +58,10 @@ const description = "";
     </head>
 
     <body class="text-neutral-100 bg-[#0b0b0b] px-8 py-5">
-        <div class="w-full flex flex-col mx-auto">
+        <div class="w-full flex flex-col mx-auto gap-6">
             <Header />
             <slot />
-            <!-- <Footer /> -->
+            <Footer />
         </div>
     </body>
 </html>

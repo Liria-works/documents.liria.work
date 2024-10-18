@@ -4,61 +4,100 @@ import Main from "../layouts/main.astro";
 import Link from "../components/link.astro";
 
 const data = await getArticles();
+
+const contents = [
+    {
+        label: "Liria Graphics",
+        href: "/graphics",
+        contents: [
+            {
+                label: "アイテム",
+                contents: [
+                    ...data.contents.map((article) => ({
+                        label: article.title.ja,
+                        href: `/graphics/${article.id}`,
+                        external: false,
+                    })),
+                ],
+            },
+            {
+                contents: [
+                    {
+                        label: "ライセンス",
+                        href: "/graphics/license",
+                        external: false,
+                    },
+                ],
+            },
+            {
+                label: "外部リンク",
+                contents: [
+                    {
+                        label: "BOOTH",
+                        href: "https://eicosapenta.booth.pm/",
+                        external: true,
+                    },
+                    {
+                        label: "GitHubリポジトリ",
+                        href: "https://github.com/Liria-works/liria-graphics",
+                        external: true,
+                    },
+                ],
+            },
+        ],
+    },
+];
 ---
 
 <Main>
     <div w-full flex px-3 gap-10>
-        <div w-56 pt-12 pb-8 gap-5 flex="~ col">
-            <Link bold href="/graphics" label="Liria Graphics" />
+        <div w-56 pt-12 pb-8 gap-5 flex="~ col" flex-shrink-0>
+            {
+                contents.map((heading) => (
+                    <div w-full gap-4 flex="~ col">
+                        <Link bold href={heading.href} label={heading.label} />
 
-            <div w-full gap-8 flex="~ col">
-                <div w-full gap-3 flex="~ col">
-                    <p font-bold text-sm>アイテム</p>
+                        <div w-full gap-6 flex="~ col">
+                            {heading.contents.map((section) => {
+                                const h = section.label ? (
+                                    <p font-bold text-sm>
+                                        {section.label}
+                                    </p>
+                                ) : undefined;
+                                const c = (
+                                    <div flex>
+                                        <div
+                                            h-auto
+                                            w-px
+                                            ml-2
+                                            mr-4
+                                            bg-neutral-800
+                                        />
+                                        <div w-full gap-2 flex="~ col">
+                                            {section.contents.map((item) => (
+                                                <Link
+                                                    href={item.href}
+                                                    label={item.label}
+                                                    trailing={
+                                                        item.external && true
+                                                    }
+                                                />
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
 
-                    <div flex>
-                        <div h-auto w-px ml-2 mr-4 bg-neutral-800></div>
-                        <div gap-2 flex="~ col">
-                            {
-                                data.contents.map((article) => (
-                                    <Link
-                                        href={`/graphics/${article.id}`}
-                                        label={article.title.ja}
-                                    />
-                                ))
-                            }
+                                return (
+                                    <div w-full gap-3 flex="~ col">
+                                        {h}
+                                        {c}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
-                </div>
-
-                <div flex>
-                    <div h-auto w-px ml-2 mr-4 bg-neutral-800></div>
-                    <div gap-2 flex="~ col">
-                        <Link href="/graphics/license" label="ライセンス" />
-                    </div>
-                </div>
-
-                <div w-full gap-3 flex="~ col">
-                    <p font-bold text-sm>外部リンク</p>
-
-                    <div flex>
-                        <div h-auto w-px ml-2 mr-4 bg-neutral-800></div>
-                        <div w-full gap-2 flex="~ col">
-                            <div grow flex items-center justify-between gap-2>
-                                <Link
-                                    href="https://eicosapenta.booth.pm/"
-                                    label="BOOTH"
-                                    trailing
-                                />
-                            </div>
-                            <Link
-                                href="https://github.com/Liria-works/liria-graphics"
-                                label="GitHubリポジトリ"
-                                trailing
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+                ))
+            }
         </div>
 
         <div h-auto w-px mt-6 bg-neutral-800></div>
@@ -70,7 +109,7 @@ const data = await getArticles();
 
             <div>
                 <Link
-                    href="/"
+                    href={import.meta.env.GITHUB_ISSUE_LINK}
                     label="修正を提案"
                     icon="i-lucide-move-up-right"
                 />

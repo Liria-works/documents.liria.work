@@ -14,17 +14,17 @@ export type liriaGraphics = {
 		booth: number;
 		saledAt: string;
 		description: string;
-		contents: { name: string; type: string; description: string }[];
+		contents: { name: string; type: string; description: string }[] | null;
 		details: {
 			model: string;
 			tris: string;
 			materials: string;
 			textures: string;
 			bones: string;
-			shapekeys: { name: string; description: string }[];
+			shapekeys: { name: string; description: string }[] | null;
 			notes: string;
-		}[];
-		packages: { name: string; version: string; annotation: string }[];
+		}[] | null;
+		packages: { name: string; version: string; annotation: string }[] | null;
 		usage: string;
 		notForSale: boolean;
 	}[];

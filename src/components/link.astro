@@ -1,7 +1,8 @@
 ---
-const { label, icon, href, bold, trailing } = Astro.props;
+const { label, icon, iconSize, href, bold, trailing } = Astro.props;
 
 let ICON = icon;
+let ICON_SIZE = iconSize;
 let newTab = false;
 
 if (href) {
@@ -16,6 +17,8 @@ if (href) {
 if (newTab && ICON === undefined) {
     ICON = "i-lucide-move-up-right";
 }
+
+if (ICON_SIZE === undefined) ICON_SIZE = "size-4";
 ---
 
 <div class={`${trailing ? "w-full" : "w-fit"}`}>
@@ -25,13 +28,13 @@ if (newTab && ICON === undefined) {
         rel={newTab ? "noopener noreferrer" : ""}
         class={`flex items-center gap-2 text-neutral-400 hover:text-neutral-200 ${trailing && "justify-between"}`}
     >
-        {ICON && !trailing && <span class={`size-4 ${ICON}`} />}
+        {ICON && !trailing && <span class={`${ICON} ${ICON_SIZE}`} />}
         <p
             class={`${bold ? "text-md font-bold text-neutral-100" : "text-sm font-normal"}`}
         >
             {label}
         </p>
 
-        {ICON && trailing && <span class={`size-4 ${ICON}`} />}
+        {ICON && trailing && <span class={`${ICON} ${ICON_SIZE}`} />}
     </a>
 </div>

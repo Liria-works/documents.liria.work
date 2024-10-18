@@ -5,9 +5,12 @@ import mdx from "@astrojs/mdx";
 import vue from "@astrojs/vue";
 import UnoCSS from "unocss/astro";
 import compressor from "astro-compressor";
+import remarkToc from "remark-toc";
+import remarkBreaks from "remark-breaks";
 
 // https://astro.build/config
 export default defineConfig({
+	output: "static",
 	integrations: [
 		mdx(),
 		vue(),
@@ -16,5 +19,8 @@ export default defineConfig({
 		}),
 		compressor(),
 	],
-	output: "static",
+	markdown: {
+		remarkPlugins: [remarkToc, remarkBreaks],
+		gfm: true,
+	},
 });

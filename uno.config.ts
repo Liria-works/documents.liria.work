@@ -23,7 +23,14 @@ export default defineConfig({
 				},
 			},
 		}),
-		presetTypography(),
+		presetTypography({
+			cssExtend: {
+				":not(pre) > code::before,:not(pre) > code::after": {
+					content: "''",
+					"background-color": "#6B7280",
+				},
+			},
+		}),
 		presetWebFonts({
 			fonts: {
 				// ...

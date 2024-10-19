@@ -7,11 +7,14 @@ import UnoCSS from "unocss/astro";
 import compressor from "astro-compressor";
 import remarkToc from "remark-toc";
 import remarkBreaks from "remark-breaks";
-import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://documents.liria.work",
 	output: "static",
+	image: {
+		domains: ["images.microcms-assets.io"],
+	},
 	integrations: [
 		mdx(),
 		vue(),
@@ -24,5 +27,4 @@ export default defineConfig({
 		remarkPlugins: [remarkToc, remarkBreaks],
 		gfm: true,
 	},
-	adapter: vercel(),
 });

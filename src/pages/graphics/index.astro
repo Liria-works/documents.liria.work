@@ -1,40 +1,18 @@
 ---
-import { SEO } from 'astro-seo';
-import Article from '../../layouts/article.astro';
+import Article from '@/layouts/article.astro';
+import Ogp from '@/components/ogp.astro';
 ---
 
 <Article>
-    <SEO
-        openGraph={{
-            basic: {
-                title: 'Liria Graphics',
-                type: 'article',
-                image: '/logo_liria_documents.png',
-            },
-            optional: {
-                description:
-                    'Liria Graphicsは、VRSNSアバター向けアセットを中心に販売するBOOTHショップです',
-                siteName: 'Liria Documents',
-                locale: 'ja_JP',
-            },
-        }}
-        twitter={{
-            site: '@liria_work',
-            card: 'summary',
-            image: '/logo_liria_documents.png',
-            title: 'Liria Graphics',
-            description:
-                'Liria Graphicsは、VRSNSアバター向けアセットを中心に販売するBOOTHショップです',
-        }}
-        extend={{
-            link: [{ rel: 'icon', href: '/favicon.ico' }],
-            meta: [
-                {
-                    name: 'viewport',
-                    content: 'width=device-width, initial-scale=1',
-                },
-            ],
-        }}
+    <Ogp
+        type="article"
+        title="Liria Graphics"
+        description="Liria Graphicsは、VRSNSアバター向けアセットを中心に販売するBOOTHショップです"
+        image="/logo_liria_documents.png"
+        publishedTime={new Date().toISOString()}
+        modifiedTime={new Date().toISOString()}
+        authors={['Liria', 'Liry24']}
+        twitterCard="summary"
     />
     <div gap-8 flex="~ col">
         <div gap-3 flex="~ col">

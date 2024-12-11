@@ -1,8 +1,20 @@
 ---
 import Main from '../layouts/main.astro';
+import Ogp from '@/components/ogp.astro';
 ---
 
 <Main>
+    <Ogp
+        type="website"
+        title="Liria Documents"
+        description="Documents of Liria products"
+        image="/logo_liria_documents.png"
+        publishedTime={new Date().toISOString()}
+        modifiedTime={new Date().toISOString()}
+        authors={['Liria']}
+        twitterCard="summary"
+    />
+
     <div w-full flex="~ col" items-center justify-center>
         <a
             href="/graphics"

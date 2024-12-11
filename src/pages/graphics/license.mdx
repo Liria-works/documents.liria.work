@@ -2,38 +2,18 @@
 layout: '../../layouts/article.astro'
 ---
 
-import Card from '../../components/card.astro';
-import { SEO } from 'astro-seo';
+import Ogp from '@/components/ogp.astro';
+import Card from '@/components/card.astro';
 
-<SEO
-    openGraph={{
-        basic: {
-            title: 'ライセンス | Liria Graphics',
-            type: 'article',
-            image: '/logo_liria_documents.png',
-        },
-        optional: {
-            description: 'Liria Graphics で取り扱う商品のライセンス',
-            siteName: 'Liria Documents',
-            locale: 'ja_JP',
-        },
-    }}
-    twitter={{
-        site: '@liria_work',
-        card: 'summary_large_image',
-        image: '/logo_liria_documents.png',
-        title: 'ライセンス | Liria Graphics',
-        description: 'Liria Graphics で取り扱う商品のライセンス',
-    }}
-    extend={{
-        link: [{ rel: 'icon', href: '/favicon.ico' }],
-        meta: [
-            {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1',
-            },
-        ],
-    }}
+<Ogp
+    type="article"
+    title="ライセンス | Liria Graphics"
+    description="Liria Graphics で取り扱う商品のライセンス"
+    image="/logo_liria_documents.png"
+    publishedTime={new Date().toISOString()}
+    modifiedTime={new Date().toISOString()}
+    authors={['Liria', 'Liry24']}
+    twitterCard="summary"
 />
 
 <div class="text-base prose">

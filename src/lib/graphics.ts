@@ -10,23 +10,26 @@ export type liriaGraphics = {
 		revisedAt: string;
 		title: { ja: string; en: string };
 		thumbnail: { url: string; width: number; height: number };
-		price: number;
-		booth: number;
-		saledAt: string;
+		price: number | undefined;
+		booth: number | undefined;
+		saledAt: string | undefined;
 		description: string;
 		contents: { name: string; type: string; description: string }[] | null;
-		details: {
-			model: string;
-			tris: string;
-			materials: string;
-			textures: string;
-			bones: string;
-			shapekeys: { name: string; description: string }[] | null;
-			notes: string;
-		}[] | null;
+		details:
+			| {
+					model: string;
+					tris: string;
+					materials: string;
+					textures: string;
+					bones: string;
+					shapekeys: { name: string; description: string }[] | null;
+					notes: string;
+			  }[]
+			| null;
 		packages: { name: string; version: string; annotation: string }[] | null;
 		usage: string;
 		notForSale: boolean;
+		changeLogs: { version: string; date: string; content: string }[] | null;
 	}[];
 };
 

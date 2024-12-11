@@ -1,18 +1,51 @@
 ---
-import Main from "../layouts/main.astro";
+import Main from '../layouts/main.astro';
 ---
 
 <Main>
-    <div w-full flex="~ col" items-center justify-center h="[80vh]">
+    <div w-full flex="~ col" items-center justify-center>
         <a
             href="/graphics"
+            self-stretch
+            h="[70vh]"
+            m="y-8"
+            rounded-xl
+            relative
             flex
             items-center
-            gap-3
-            text="neutral-100 hover:neutral-400"
+            justify-center
+            overflow-hidden
+            bg-neutral-8
+            class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
         >
-            <span class="i-custom-booth?mask"></span>
-            <p>Liria Graphics</p>
+            <div
+                absolute
+                inset-0
+                bg-gradient-to-br
+                from-transparent
+                to-neutral-7
+                opacity-40
+                group-hover:opacity-100
+            >
+            </div>
+            <div absolute top-0 left-0 p-5 flex items-center gap-3>
+                <span class="i-custom-booth?mask size-5 bg-neutral-4"></span>
+            </div>
+            <div absolute flex items-center>
+                <h2
+                    font-bold
+                    text="4xl neutral-3 group-hover:neutral-1"
+                    group-hover="transform-translate-x-[-1rem]"
+                >
+                    Liria Graphics
+                </h2>
+                <span
+                    i-lucide-arrow-right
+                    size-6
+                    opacity-0
+                    group-hover="opacity-100 transform-translate-x-[1rem]"
+                ></span>
+            </div>
         </a>
     </div>
 </Main>

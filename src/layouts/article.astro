@@ -1,17 +1,16 @@
 ---
-import { getArticles } from "../lib/graphics";
-import Main from "../layouts/main.astro";
-import Link from "../components/link.astro";
+import { getArticles } from '../lib/graphics';
+import Main from '../layouts/main.astro';
+import Link from '../components/link.astro';
 
 const data = await getArticles();
 
 const contents = [
     {
-        label: "Liria Graphics",
-        href: "/graphics",
+        label: 'Liria Graphics',
+        href: '/graphics',
         contents: [
             {
-                label: "アイテム",
                 contents: [
                     ...data.contents.map((article) => ({
                         label: article.title.ja,
@@ -23,23 +22,23 @@ const contents = [
             {
                 contents: [
                     {
-                        label: "ライセンス",
-                        href: "/graphics/license",
+                        label: 'ライセンス',
+                        href: '/graphics/license',
                         external: false,
                     },
                 ],
             },
             {
-                label: "外部リンク",
+                label: '外部リンク',
                 contents: [
                     {
-                        label: "BOOTH",
-                        href: "https://eicosapenta.booth.pm/",
+                        label: 'BOOTH',
+                        href: 'https://eicosapenta.booth.pm/',
                         external: true,
                     },
                     {
-                        label: "GitHubリポジトリ",
-                        href: "https://github.com/Liria-works/liria-graphics",
+                        label: 'GitHub',
+                        href: 'https://github.com/Liria-works/liria-graphics',
                         external: true,
                     },
                 ],

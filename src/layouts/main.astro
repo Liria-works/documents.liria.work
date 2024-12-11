@@ -1,12 +1,12 @@
 ---
-import { AstroFont } from "astro-font";
-import { SEO } from "astro-seo";
+import { AstroFont } from 'astro-font';
+import { SEO } from 'astro-seo';
 
-import Header from "./header.astro";
-import Footer from "./footer.astro";
+import Header from './header.astro';
+import Footer from './footer.astro';
 
-const title = "Liria Documents";
-const description = "";
+const title = 'Liria Documents';
+const description = '';
 ---
 
 <html lang="en">
@@ -19,23 +19,23 @@ const description = "";
             openGraph={{
                 basic: {
                     title: title,
-                    type: "",
-                    image: "",
+                    type: 'website',
+                    image: '/logo_liria_documents.png',
                 },
             }}
             twitter={{
-                creator: "@liria_work",
-                card: "summary",
-                image: "",
+                creator: '@liria_work',
+                card: 'summary',
+                image: '/logo_liria_documents.png',
                 title: title,
                 description: description,
             }}
             extend={{
-                link: [{ rel: "icon", href: "/favicon.ico" }],
+                link: [{ rel: 'icon', href: '/favicon.ico' }],
                 meta: [
                     {
-                        name: "viewport",
-                        content: "width=device-width, initial-scale=1",
+                        name: 'viewport',
+                        content: 'width=device-width, initial-scale=1',
                     },
                 ],
             }}
@@ -44,14 +44,14 @@ const description = "";
             config={[
                 {
                     src: [],
-                    name: "Montserrat",
+                    name: 'Montserrat',
                     // Google Fonts URL
                     googleFontsURL:
-                        "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap",
+                        'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap',
                     preload: true,
-                    display: "swap",
-                    selector: "body",
-                    fallback: "sans-serif",
+                    display: 'swap',
+                    selector: 'body',
+                    fallback: 'sans-serif',
                 },
             ]}
         />

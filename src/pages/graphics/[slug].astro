@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { getSlugs, getArticles } from '@/lib/graphics';
+import { SEO } from 'astro-seo';
 import Article from '@/layouts/article.astro';
 import Link from '@/components/link.astro';
 import HTML from '@/components/html.vue';
@@ -38,6 +39,41 @@ if (article.details)
 ---
 
 <Article>
+    <SEO
+        openGraph={{
+            basic: {
+                title: `${article.title.ja} | Liria Graphics`,
+                type: 'article',
+                image: article.thumbnail.url,
+            },
+            optional: {
+                description: article.description,
+                locale: 'ja_JP',
+            },
+            article: {
+                publishedTime: new Date(article.createdAt).toISOString(),
+                modifiedTime: new Date(article.updatedAt).toISOString(),
+                authors: ['Liria', 'Liry24'],
+            },
+        }}
+        twitter={{
+            site: '@liria_work',
+            card: 'summary_large_image',
+            image: article.thumbnail.url,
+            title: `${article.title.ja} | Liria Graphics`,
+            description: article.description,
+        }}
+        extend={{
+            link: [{ rel: 'icon', href: '/favicon.ico' }],
+            meta: [
+                {
+                    name: 'viewport',
+                    content: 'width=device-width, initial-scale=1',
+                },
+            ],
+        }}
+    />
+
     <div gap-16 flex="~ col">
         <div gap-2 flex="~ col">
             <h1 text-3xl font-bold>{article.title.ja}</h1>

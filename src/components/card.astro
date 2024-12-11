@@ -1,0 +1,37 @@
+---
+interface Props {
+    type: "info" | "warning" | "caution";
+}
+const { type } = Astro.props;
+
+const color: { [key: string]: string } = {
+    info: "bg-sky-400/30",
+    caution: "bg-yellow-300/40",
+    warning: "bg-red-500/40",
+};
+---
+
+<div
+    w-full
+    p="x-6 y-4"
+    gap-3
+    rounded-xl
+    flex="~ col"
+    class=`not-prose ${color[type]}`
+>
+    <div flex items-center gap-2>
+        <span i-lucide-info size-4 text-neutral-100></span>
+        <p leading-none text-sm font-bold>
+            {
+                () => {
+                    if (type === "info") return "INFO";
+                    if (type === "warning") return "WARNING";
+                    if (type === "caution") return "CAUTION";
+                }
+            }
+        </p>
+    </div>
+    <p pl-2>
+        <slot />
+    </p>
+</div>

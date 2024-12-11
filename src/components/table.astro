@@ -1,0 +1,41 @@
+---
+interface Props {
+    data: {
+        headers: {
+            key: string;
+            label: string;
+            align?: 'left' | 'center' | 'right';
+        }[];
+        rows: Array<{ [key: string]: string }>;
+    };
+}
+
+const { data } = Astro.props;
+---
+
+<table table-auto rounded-lg outline="~ 1 neutral-6" divide="y-1 neutral-6">
+    <thead text="sm" bg-neutral-8>
+        <tr divide="x-1 neutral-6">
+            {data.headers.map((h) => <th p="x-3 y-1">{h.label}</th>)}
+        </tr>
+    </thead>
+    <tbody divide="y-1 neutral-6">
+        {
+            data.rows.map((row) => (
+                <tr divide="x-1 neutral-6">
+                    {data.headers.map((header) => (
+                        <td
+                            p="x-3 y-1"
+                            text={(() => {
+                                if (header.align) return header.align;
+                                else return 'center';
+                            })()}
+                        >
+                            {row[header.key]}
+                        </td>
+                    ))}
+                </tr>
+            ))
+        }
+    </tbody>
+</table>

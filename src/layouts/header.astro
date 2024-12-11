@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import LogoLiria from '../../public/logo_liria_white.svg';
+
+const links = [
+    {
+        icon: 'i-custom-liria?mask',
+        href: 'https://liria.work',
+        label: 'Liria',
+    },
+    {
+        icon: 'i-custom-booth?mask',
+        href: 'https://eicosapenta.booth.pm',
+        label: 'Liria Graphics - BOOTH',
+    },
+    { icon: 'i-simple-icons-x', href: 'https://x.com/liria_work', label: 'X' },
+    {
+        icon: 'i-simple-icons-github',
+        href: 'https://github.com/Liria-works',
+        label: 'GitHub',
+    },
+];
+---
+
+<header w-full flex items-center justify-between>
+    <a href="/" flex items-center gap-2>
+        <Image
+            src={LogoLiria}
+            alt="Liria Logo"
+            width="30"
+            height="30"
+            loading="eager"
+        />
+        <span text-xl font-bold tracking-wide pt-0.5>Liria Docs</span>
+    </a>
+
+    <div flex items-center gap-6>
+        {
+            links.map((link) => (
+                <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.label}
+                    class={`${link.icon} size-4.5 bg-neutral-400 hover:bg-neutral-100 transition duration-100 delay-0 ease-in-out`}
+                />
+            ))
+        }
+    </div>
+</header>

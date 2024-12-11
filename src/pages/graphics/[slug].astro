@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 const articles = await getArticles();
 const article = articles.contents.find(
-    (article) => article.id === Astro.params.slug,
+    (article) => article.id === Astro.params.slug
 );
 if (!article) return Astro.redirect('/404');
 
@@ -48,12 +48,17 @@ if (article.details)
             },
             optional: {
                 description: article.description,
+                siteName: 'Liria Documents',
                 locale: 'ja_JP',
             },
             article: {
                 publishedTime: new Date(article.createdAt).toISOString(),
                 modifiedTime: new Date(article.updatedAt).toISOString(),
                 authors: ['Liria', 'Liry24'],
+            },
+            image: {
+                url: article.thumbnail.url,
+                alt: article.title.ja,
             },
         }}
         twitter={{
@@ -103,7 +108,7 @@ if (article.details)
                                         year: 'numeric',
                                         month: '2-digit',
                                         day: '2-digit',
-                                    },
+                                    }
                                 )}
                             </p>
                         </div>
@@ -119,7 +124,7 @@ if (article.details)
                                     year: 'numeric',
                                     month: '2-digit',
                                     day: '2-digit',
-                                },
+                                }
                             )
                         }
                     </p>
@@ -295,7 +300,7 @@ if (article.details)
                                                                 >
                                                                     {detail.shapekeys.map(
                                                                         (
-                                                                            shapekey,
+                                                                            shapekey
                                                                         ) => (
                                                                             <li
                                                                                 gap-1
@@ -330,7 +335,7 @@ if (article.details)
                                                                                     }
                                                                                 </p>
                                                                             </li>
-                                                                        ),
+                                                                        )
                                                                     )}
                                                                 </ul>
                                                             </div>

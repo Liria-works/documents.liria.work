@@ -1,7 +1,40 @@
 ---
-layout: "../../layouts/article.astro"
+layout: '../../layouts/article.astro'
 ---
-import Card from "../../components/card.astro";
+
+import Card from '../../components/card.astro';
+import { SEO } from 'astro-seo';
+
+<SEO
+    openGraph={{
+        basic: {
+            title: 'ライセンス | Liria Graphics',
+            type: 'article',
+            image: '/logo_liria_documents.png',
+        },
+        optional: {
+            description: 'Liria Graphics で取り扱う商品のライセンス',
+            siteName: 'Liria Documents',
+            locale: 'ja_JP',
+        },
+    }}
+    twitter={{
+        site: '@liria_work',
+        card: 'summary_large_image',
+        image: '/logo_liria_documents.png',
+        title: 'ライセンス | Liria Graphics',
+        description: 'Liria Graphics で取り扱う商品のライセンス',
+    }}
+    extend={{
+        link: [{ rel: 'icon', href: '/favicon.ico' }],
+        meta: [
+            {
+                name: 'viewport',
+                content: 'width=device-width, initial-scale=1',
+            },
+        ],
+    }}
+/>
 
 <div class="text-base prose">
 # ライセンス
@@ -26,12 +59,12 @@ import Card from "../../components/card.astro";
 
 ## 禁止事項
 
-- データの再配布
-- 第三者に対して何かしらの損害を与える目的での利用
-- 政治・宗教目的での利用
-- AI を使用したサービスに、商品に含まれるデータ等を使用したファイルをアップロードすること
+-   データの再配布
+-   第三者に対して何かしらの損害を与える目的での利用
+-   政治・宗教目的での利用
+-   AI を使用したサービスに、商品に含まれるデータ等を使用したファイルをアップロードすること
 
-<Card type='info'>AI を使用したサービス例 : Avalab</Card>
+<Card type="info">AI を使用したサービス例 : Avalab</Card>
 
 ## 返金
 
@@ -40,4 +73,5 @@ import Card from "../../components/card.astro";
 また、その他の商品については Booth の規約を確認してください。
 Booth の規約により返金が可能なものであれば、Booth にて申請を行ってください。
 DM などでの個別でのやり取りは行いません。
+
 </div>

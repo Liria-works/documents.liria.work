@@ -1,17 +1,11 @@
 ---
-import { Image, getImage } from 'astro:assets';
+import { Image } from 'astro:assets';
 import { getArticles } from '@/lib/graphics';
 import Article from '@/layouts/article.astro';
 import Ogp from '@/components/ogp.astro';
+import Logo from '../../assets/logo_liria_graphics.png';
 
 const articles = await getArticles();
-
-// import logo from 'https://github.com/Liria-works/logos/blob/main/graphics/002.png?raw=true';
-const optimizedLogo = await getImage({
-    src: 'https://github.com/Liria-works/logos/blob/main/graphics/002.png?raw=true',
-    format: 'webp',
-    inferSize: true,
-});
 ---
 
 <Article>
@@ -19,7 +13,7 @@ const optimizedLogo = await getImage({
         type="article"
         title="Liria Graphics"
         description="Liria Graphicsは、VRSNSアバター向けアセットを中心に販売するBOOTHショップです"
-        image="/logo_liria_documents.png"
+        image="/image_liria_documents.png"
         publishedTime={new Date().toISOString()}
         modifiedTime={new Date().toISOString()}
         authors={['Liria', 'Liry24']}
@@ -35,10 +29,9 @@ const optimizedLogo = await getImage({
         >
             <div max-w-sm md:max-w-lg p="r-12 t-6 md:t-0" select-none>
                 <Image
-                    src={optimizedLogo.src}
+                    src={Logo}
                     alt="Liria Graphics"
-                    width={optimizedLogo.attributes.width}
-                    height={optimizedLogo.attributes.height}
+                    format="webp"
                     loading="eager"
                 />
             </div>
@@ -79,13 +72,12 @@ const optimizedLogo = await getImage({
                         <a
                             href={`/graphics/${item.id}`}
                             relative
-                            p="2 b-3"
                             rounded-lg
                             gap-2
                             flex="~ col"
                             items-center
                             outline="~ 1 neutral-6 hover:neutral-1"
-                            class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+                            class="group p-2 pb-3 [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
                         >
                             <span
                                 i-lucide-arrow-up-right
@@ -103,6 +95,7 @@ const optimizedLogo = await getImage({
                                 alt={item.title.ja}
                                 width="192"
                                 height="192"
+                                format="webp"
                                 loading="lazy"
                                 object-cover
                             />

@@ -28,7 +28,12 @@ const props = defineProps<{
     <div flex gap-10>
         <div hidden md:flex="~ col" w-56 pt-12 pb-8 gap-5 flex-shrink-0>
             <div v-for="heading in props.contents" w-full gap-4 flex="~ col">
-                <Link bold :href="heading.href" :label="heading.label" />
+                <Link
+                    bold
+                    :href="heading.href"
+                    :label="heading.label"
+                    class="text-lg"
+                />
 
                 <div w-full gap-6 flex="~ col">
                     <div

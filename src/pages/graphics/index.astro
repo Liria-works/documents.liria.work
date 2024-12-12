@@ -1,6 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import { getArticles } from '@/lib/graphics';
 import Article from '@/layouts/article.astro';
 import Ogp from '@/components/ogp.astro';
+
+const articles = await getArticles();
 ---
 
 <Article>
@@ -15,7 +19,38 @@ import Ogp from '@/components/ogp.astro';
         twitterCard="summary"
     />
     <div gap-8 flex="~ col">
-        <div gap-3 flex="~ col">
+        <a
+            href="https://eicosapenta.booth.pm"
+            target="_blank"
+            gap-4
+            flex="~ col"
+            class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+        >
+            <div max-w-sm md:max-w-lg p="r-12 t-6 md:t-0" select-none>
+                <Image
+                    src="https://github.com/Liria-works/logos/blob/main/graphics/002.png?raw=true"
+                    alt="Liria Graphics"
+                    inferSize={true}
+                    loading="eager"
+                />
+            </div>
+
+            <div flex gap-3 items-center>
+                <span
+                    class="i-custom-booth?mask size-5"
+                    bg="neutral-4 group-hover:[#fc4d50]"></span>
+                <span text="neutral-4 group-hover:red-4">booth.pm</span>
+                <span
+                    i-lucide-arrow-up-right
+                    size-4
+                    bg="red-4"
+                    opacity-0
+                    transform="translate-x-[-1rem]"
+                    group-hover="opacity-100 transform-translate-x-0"></span>
+            </div>
+        </a>
+
+        <div gap-3 flex="~ col" text-neutral-2>
             <p>
                 {
                     'Liria Graphicsは、VRSNSアバター向けアセットを中心に販売するBOOTHショップです。'
@@ -26,6 +61,53 @@ import Ogp from '@/components/ogp.astro';
                     'このドキュメントでは、各販売アイテムのドキュメントやライセンスについて掲載します。'
                 }
             </p>
+        </div>
+
+        <div gap-5 flex="~ col">
+            <h2 text-xl font-bold>アイテム一覧</h2>
+            <div gap-5 grid="~ cols-2">
+                {
+                    articles.contents.map((item) => (
+                        <a
+                            href={`/graphics/${item.id}`}
+                            relative
+                            p="2 b-3"
+                            rounded-lg
+                            gap-2
+                            flex="~ col"
+                            items-center
+                            outline="~ 1 neutral-6 hover:neutral-1"
+                            class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+                        >
+                            <Image
+                                src={item.thumbnail.url}
+                                alt={item.title.ja}
+                                width="192"
+                                height="192"
+                                loading="lazy"
+                                object-cover
+                            />
+                            <h3
+                                font-semibold
+                                text="neutral-3 group-hover:neutral-1"
+                            >
+                                {item.title.ja}
+                            </h3>
+                            <span
+                                i-lucide-arrow-up-right
+                                size-6
+                                absolute
+                                top-2
+                                right-2
+                                bg-neutral-3
+                                opacity-0
+                                transform="translate-x-[-1rem]"
+                                group-hover="opacity-100 transform-translate-x-0"
+                            />
+                        </a>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </Article>

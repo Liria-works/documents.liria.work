@@ -1,10 +1,17 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import { getArticles } from '@/lib/graphics';
 import Article from '@/layouts/article.astro';
 import Ogp from '@/components/ogp.astro';
 
 const articles = await getArticles();
+
+// import logo from 'https://github.com/Liria-works/logos/blob/main/graphics/002.png?raw=true';
+const optimizedLogo = await getImage({
+    src: 'https://github.com/Liria-works/logos/blob/main/graphics/002.png?raw=true',
+    format: 'webp',
+    inferSize: true,
+});
 ---
 
 <Article>
@@ -28,9 +35,10 @@ const articles = await getArticles();
         >
             <div max-w-sm md:max-w-lg p="r-12 t-6 md:t-0" select-none>
                 <Image
-                    src="https://github.com/Liria-works/logos/blob/main/graphics/002.png?raw=true"
+                    src={optimizedLogo.src}
                     alt="Liria Graphics"
-                    inferSize={true}
+                    width={optimizedLogo.attributes.width}
+                    height={optimizedLogo.attributes.height}
                     loading="eager"
                 />
             </div>
@@ -79,6 +87,17 @@ const articles = await getArticles();
                             outline="~ 1 neutral-6 hover:neutral-1"
                             class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
                         >
+                            <span
+                                i-lucide-arrow-up-right
+                                size-6
+                                absolute
+                                top-2
+                                right-2
+                                bg-neutral-3
+                                opacity-0
+                                transform="translate-x-[-1rem]"
+                                group-hover="opacity-100 transform-translate-x-0"
+                            />
                             <Image
                                 src={item.thumbnail.url}
                                 alt={item.title.ja}
@@ -93,17 +112,6 @@ const articles = await getArticles();
                             >
                                 {item.title.ja}
                             </h3>
-                            <span
-                                i-lucide-arrow-up-right
-                                size-6
-                                absolute
-                                top-2
-                                right-2
-                                bg-neutral-3
-                                opacity-0
-                                transform="translate-x-[-1rem]"
-                                group-hover="opacity-100 transform-translate-x-0"
-                            />
                         </a>
                     ))
                 }

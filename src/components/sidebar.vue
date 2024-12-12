@@ -2,7 +2,6 @@
 import Link from './link.vue';
 import {
     PopoverArrow,
-    PopoverClose,
     PopoverContent,
     PopoverPortal,
     PopoverRoot,

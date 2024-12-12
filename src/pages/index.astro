@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Main from '@/layouts/main.astro';
 import Ogp from '@/components/ogp.astro';
+import LogoLiriaGraphics from '../../assets/logo_liria_graphics.png';
 ---
 
 <Main>
@@ -44,9 +46,10 @@ import Ogp from '@/components/ogp.astro';
                 <span class="i-custom-booth?mask size-5 bg-neutral-4"></span>
             </div>
             <div absolute flex items-center>
-                <img
-                    src="https://raw.githubusercontent.com/Liria-works/logos/9d9177517b0d59a4e0fd65a17c345fcb48c9d82e/graphics/002.svg"
+                <Image
+                    src={LogoLiriaGraphics}
                     alt="Liria Graphics"
+                    format="webp"
                     loading="eager"
                     group-hover="transform-translate-x-[-1rem]"
                     h="14 md:18"

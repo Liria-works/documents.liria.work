@@ -46,16 +46,18 @@ import LogoLiriaGraphics from '../assets/logo_liria_graphics.png';
                 <span class="i-custom-booth?mask size-5 bg-neutral-4"></span>
             </div>
             <div absolute flex items-center>
-                <Image
-                    src={LogoLiriaGraphics}
-                    alt="Liria Graphics"
-                    width="288"
-                    format="webp"
-                    loading="eager"
-                    group-hover="transform-translate-x-[-1rem]"
-                    opacity-60
-                    group-hover:opacity-100
-                />
+                <div flex w="64 md:72">
+                    <Image
+                        src={LogoLiriaGraphics}
+                        alt="Liria Graphics"
+                        format="webp"
+                        loading="eager"
+                        group-hover="transform-translate-x-[-1rem]"
+                        opacity-60
+                        group-hover:opacity-100
+                        object-none
+                    />
+                </div>
 
                 <span
                     i-lucide-arrow-right

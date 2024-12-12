@@ -14,6 +14,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
     site: 'https://documents.liria.work',
     output: 'static',
+    prefetch: {
+        prefetchAll: true,
+    },
     image: {
         domains: ['images.microcms-assets.io'],
     },

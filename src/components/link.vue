@@ -22,7 +22,7 @@ const props = withDefaults(
         :target="props.external ? '_blank' : '_self'"
         :rel="props.external ? 'noopener noreferrer' : ''"
         :class="[
-            'flex items-center gap-2 text-neutral-400 hover:text-neutral-200',
+            'flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-all duration-100 delay-0 ease-in-out',
             props.external && 'justify-between',
         ]"
     >

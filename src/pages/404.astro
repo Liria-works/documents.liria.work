@@ -1,0 +1,35 @@
+---
+import Main from '@/layouts/main.astro';
+---
+
+<Main>
+    <div p="y-24" gap-6 flex="~ col" items-center>
+        <h1 text="9xl neutral-4" font-extrabold>404</h1>
+        <p text="xl neutral-4">page not found</p>
+        <a
+            href="/"
+            mt-12
+            p="x-7 y-2"
+            rounded-lg
+            relative
+            flex
+            place-items-center
+            text="lg neutral-3"
+            hover:bg-neutral-8
+            transition-all
+            duration-200
+            delay-0
+            ease-in-out
+            class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+        >
+            <span
+                i-lucide-arrow-left
+                size-5
+                absolute
+                opacity-0
+                group-hover="opacity-100 transform-translate-x--3"
+                flex-shrink-0></span>
+            <span group-hover="opacity-100 transform-translate-x-3">home</span>
+        </a>
+    </div>
+</Main>

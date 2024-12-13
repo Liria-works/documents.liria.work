@@ -9,11 +9,17 @@ import remarkToc from 'remark-toc';
 import remarkBreaks from 'remark-breaks';
 import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
     site: 'https://documents.liria.work',
     output: 'static',
+    adapter: vercel({
+        webAnalytics: {
+            enabled: true,
+        },
+    }),
     prefetch: {
         prefetchAll: true,
     },

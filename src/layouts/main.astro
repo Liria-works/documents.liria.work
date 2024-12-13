@@ -1,5 +1,6 @@
 ---
 import { AstroFont } from 'astro-font';
+import Analytics from '@vercel/analytics/astro';
 
 import Header from './header.astro';
 import Footer from './footer.astro';
@@ -31,6 +32,7 @@ import Footer from './footer.astro';
                 },
             ]}
         />
+        <Analytics />
     </head>
 
     <body class="text-neutral-100 bg-[#0b0b0b] px-8 py-5">

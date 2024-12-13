@@ -15,6 +15,7 @@
 		"@astrojs/vue": "^5.0.2",
 		"@iconify-json/lucide": "^1.2.9",
 		"@iconify-json/simple-icons": "^1.2.8",
+		"@vercel/analytics": "^1.4.1",
 		"astro": "^5.0.5",
 		"astro-compressor": "^0.4.1",
 		"astro-font": "^0.1.81",

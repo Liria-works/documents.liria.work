@@ -52,7 +52,7 @@ if (article.details)
     <div gap-16 flex="~ col">
         <div gap-2 flex="~ col">
             <h1 text-3xl font-bold>{article.title.ja}</h1>
-            <div gap-5 flex>
+            <div gap="x-5 y-1" flex="~ wrap">
                 {
                     article.notForSale && (
                         <div
@@ -71,7 +71,7 @@ if (article.details)
                     article.saledAt && (
                         <div gap-2 flex items-center>
                             <span class="i-custom-booth?mask size-4 bg-neutral-4" />
-                            <p text-neutral-400>
+                            <p text-neutral-400 leading-none>
                                 {new Date(article.saledAt).toLocaleString(
                                     'ja-JP',
                                     {

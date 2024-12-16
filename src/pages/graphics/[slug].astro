@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import { getSlugs, getArticles } from '@/lib/graphics';
+import Main from '@/layouts/main.astro';
 import Article from '@/layouts/article.astro';
-import Ogp from '@/components/ogp.astro';
 import HTML from '@/components/html.vue';
 import Table from '@/components/table.astro';
 
@@ -37,378 +37,389 @@ if (article.details)
     });
 ---
 
-<Article>
-    <Ogp
-        type="article"
-        title={`${article.title.ja} | Liria Graphics`}
-        description={article.description}
-        image={article.thumbnail.url}
-        publishedTime={new Date(article.createdAt).toISOString()}
-        modifiedTime={new Date(article.updatedAt).toISOString()}
-        authors={['Liria', 'Liry24']}
-        twitterCard="summary_large_image"
-    />
-
-    <div gap-16 flex="~ col">
-        <div gap-2 flex="~ col">
-            <h1 text-3xl font-bold>{article.title.ja}</h1>
-            <div gap="x-5 y-1" flex="~ wrap">
-                {
-                    article.notForSale && (
-                        <div
-                            w-fit
-                            p="x-4 y-2"
-                            rounded-full
-                            leading-none
-                            bg="red-7/40"
-                            border="~ red-4"
-                        >
-                            非売品
-                        </div>
-                    )
-                }
-                {
-                    article.saledAt && (
-                        <div gap-2 flex items-center>
-                            <span class="i-custom-booth?mask size-4 bg-neutral-4" />
-                            <p text-neutral-400 leading-none>
-                                {new Date(article.saledAt).toLocaleString(
+<Main
+    type="article"
+    title={`${article.title.ja} | Liria Graphics`}
+    description={article.description}
+    image={article.thumbnail.url}
+    publishedTime={new Date(article.createdAt).toISOString()}
+    modifiedTime={new Date(article.updatedAt).toISOString()}
+    authors={['Liria', 'Liry24']}
+    twitterCard="summary_large_image"
+>
+    <Article>
+        <div gap-16 flex="~ col">
+            <div gap-2 flex="~ col">
+                <h1 text-3xl font-bold>{article.title.ja}</h1>
+                <div gap="x-5 y-1" flex="~ wrap">
+                    {
+                        article.notForSale && (
+                            <div
+                                w-fit
+                                p="x-4 y-2"
+                                rounded-full
+                                leading-none
+                                bg="red-7/40"
+                                border="~ red-4"
+                            >
+                                非売品
+                            </div>
+                        )
+                    }
+                    {
+                        article.saledAt && (
+                            <div gap-2 flex items-center>
+                                <span class="i-custom-booth?mask size-4 bg-neutral-4" />
+                                <p text-neutral-400 leading-none>
+                                    {new Date(article.saledAt).toLocaleString(
+                                        'ja-JP',
+                                        {
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                        }
+                                    )}
+                                </p>
+                            </div>
+                        )
+                    }
+                    <div gap-2 flex items-center>
+                        <span class="i-lucide-book-text size-4 bg-neutral-4"
+                        ></span>
+                        <p text-neutral-400>
+                            {
+                                new Date(article.updatedAt).toLocaleString(
                                     'ja-JP',
                                     {
                                         year: 'numeric',
                                         month: '2-digit',
                                         day: '2-digit',
                                     }
-                                )}
+                                )
+                            }
+                        </p>
+                    </div>
+                </div>
+
+                <a
+                    href={article.booth
+                        ? `https://booth.pm/ja/items/${article.booth}`
+                        : undefined}
+                    target="_blank"
+                    w-fit
+                    flex="~ col"
+                    gap-2
+                    class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+                >
+                    {
+                        article.thumbnail && (
+                            <Image
+                                src={article.thumbnail.url}
+                                alt={article.title.en}
+                                width="256"
+                                height="256"
+                                loading="eager"
+                                class="w-[256px] object-cover"
+                            />
+                        )
+                    }
+
+                    {
+                        article.booth && (
+                            <div flex gap-3 items-center>
+                                <span
+                                    class="i-custom-booth?mask size-5"
+                                    bg="neutral-4 group-hover:[#fc4d50]"
+                                />
+                                <span text="neutral-4 group-hover:red-4">
+                                    BOOTH 販売ページ
+                                </span>
+                                <span
+                                    i-lucide-arrow-up-right
+                                    size-4
+                                    bg="red-4"
+                                    opacity-0
+                                    transform="translate-x-[-1rem]"
+                                    group-hover="opacity-100 transform-translate-x-0"
+                                />
+                            </div>
+                        )
+                    }
+                </a>
+            </div>
+
+            <div gap-12 flex="~ col">
+                {
+                    article.description && (
+                        <div gap-5 flex="~ col">
+                            <h2 text-2xl font-bold>
+                                説明
+                            </h2>
+                            <p pl-1 whitespace-pre-line text-neutral-2>
+                                {article.description}
                             </p>
                         </div>
                     )
                 }
-                <div gap-2 flex items-center>
-                    <span class="i-lucide-book-text size-4 bg-neutral-4"></span>
-                    <p text-neutral-400>
-                        {
-                            new Date(article.updatedAt).toLocaleString(
-                                'ja-JP',
-                                {
-                                    year: 'numeric',
-                                    month: '2-digit',
-                                    day: '2-digit',
-                                }
-                            )
-                        }
-                    </p>
-                </div>
-            </div>
-
-            <a
-                href={article.booth
-                    ? `https://booth.pm/ja/items/${article.booth}`
-                    : undefined}
-                target="_blank"
-                w-fit
-                flex="~ col"
-                gap-2
-                class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
-            >
-                {
-                    article.thumbnail && (
-                        <Image
-                            src={article.thumbnail.url}
-                            alt={article.title.en}
-                            width="256"
-                            height="256"
-                            loading="eager"
-                            class="w-[256px] object-cover"
-                        />
-                    )
-                }
 
                 {
-                    article.booth && (
-                        <div flex gap-3 items-center>
-                            <span
-                                class="i-custom-booth?mask size-5"
-                                bg="neutral-4 group-hover:[#fc4d50]"
-                            />
-                            <span text="neutral-4 group-hover:red-4">
-                                BOOTH 販売ページ
-                            </span>
-                            <span
-                                i-lucide-arrow-up-right
-                                size-4
-                                bg="red-4"
-                                opacity-0
-                                transform="translate-x-[-1rem]"
-                                group-hover="opacity-100 transform-translate-x-0"
-                            />
-                        </div>
-                    )
-                }
-            </a>
-        </div>
-
-        <div gap-12 flex="~ col">
-            {
-                article.description && (
-                    <div gap-5 flex="~ col">
-                        <h2 text-2xl font-bold>
-                            説明
-                        </h2>
-                        <p pl-1 whitespace-pre-line text-neutral-2>
-                            {article.description}
-                        </p>
-                    </div>
-                )
-            }
-
-            {
-                () => {
-                    if (article.contents && article.contents.length) {
-                        const contents = (
-                            <div gap-5 flex="~ col">
-                                <h2 text-2xl font-bold>
-                                    内容
-                                </h2>
-                                <ul pl-1 gap-4 flex="~ col" text-neutral-2>
-                                    {article.contents.map((content) => (
-                                        <li gap-2 flex="~ col">
-                                            <div h-4 gap-2 flex items-center>
-                                                <span
-                                                    leading-none
-                                                    text-neutral-500
+                    () => {
+                        if (article.contents && article.contents.length) {
+                            const contents = (
+                                <div gap-5 flex="~ col">
+                                    <h2 text-2xl font-bold>
+                                        内容
+                                    </h2>
+                                    <ul pl-1 gap-4 flex="~ col" text-neutral-2>
+                                        {article.contents.map((content) => (
+                                            <li gap-2 flex="~ col">
+                                                <div
+                                                    h-4
+                                                    gap-2
+                                                    flex
+                                                    items-center
                                                 >
-                                                    //
-                                                </span>
-                                                <p text-sm leading-none>
-                                                    {content.name}
-                                                </p>
-                                                {content.type && (
-                                                    <div
-                                                        p="x-3 y-1.5"
-                                                        rounded-full
-                                                        text-xs
-                                                        leading-none
-                                                        bg-neutral-600
-                                                    >
-                                                        {content.type}
-                                                    </div>
-                                                )}
-                                            </div>
-                                            {content.description && (
-                                                <p
-                                                    pl-5
-                                                    leading-none
-                                                    text-sm
-                                                    text-neutral-400
-                                                >
-                                                    {content.description}
-                                                </p>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        );
-                        return contents;
-                    }
-                }
-            }
-
-            {
-                details && (
-                    <div w-auto gap-5 flex="~ col">
-                        <h2 text-2xl font-bold>
-                            データの詳細
-                        </h2>
-                        <ul pl-1 gap-4 flex="~ col" text-neutral-2>
-                            {details.map((detail) => (
-                                <li gap-3 flex="~ col">
-                                    {detail.model && (
-                                        <h3 text-xl font-bold>
-                                            {detail.model}
-                                        </h3>
-                                    )}
-
-                                    <ul gap-10 flex="~ col">
-                                        <ul gap-4 flex="~ col">
-                                            {detail.detail.map((item) => (
-                                                <li gap-2 flex items-center>
                                                     <span
                                                         leading-none
                                                         text-neutral-500
                                                     >
                                                         //
                                                     </span>
-                                                    <p leading-none>
-                                                        {item.name}
+                                                    <p text-sm leading-none>
+                                                        {content.name}
                                                     </p>
-                                                    <div
-                                                        grow
-                                                        h-px
-                                                        bg-neutral-600
-                                                    />
+                                                    {content.type && (
+                                                        <div
+                                                            p="x-3 y-1.5"
+                                                            rounded-full
+                                                            text-xs
+                                                            leading-none
+                                                            bg-neutral-600
+                                                        >
+                                                            {content.type}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                {content.description && (
                                                     <p
-                                                        text-right
-                                                        font-bold
-                                                        whitespace-pre-line
+                                                        pl-5
+                                                        leading-none
+                                                        text-sm
+                                                        text-neutral-400
                                                     >
-                                                        {item.value}
+                                                        {content.description}
                                                     </p>
-                                                </li>
-                                            ))}
-
-                                            {() => {
-                                                if (
-                                                    detail.shapekeys &&
-                                                    detail.shapekeys.length
-                                                )
-                                                    return (
-                                                        <li gap-4 flex="~ col">
-                                                            <div
-                                                                gap-2
-                                                                flex
-                                                                items-center
-                                                            >
-                                                                <span
-                                                                    leading-none
-                                                                    text-neutral-500
-                                                                >
-                                                                    //
-                                                                </span>
-                                                                <p leading-none>
-                                                                    シェイプキー
-                                                                </p>
-                                                            </div>
-                                                            <div flex>
-                                                                <div
-                                                                    h-auto
-                                                                    w-px
-                                                                    mx-5
-                                                                    bg-neutral-600
-                                                                />
-                                                                <ul
-                                                                    gap-3
-                                                                    flex="~ col"
-                                                                >
-                                                                    {detail.shapekeys.map(
-                                                                        (
-                                                                            shapekey
-                                                                        ) => (
-                                                                            <li
-                                                                                gap-1
-                                                                                flex="~ col"
-                                                                            >
-                                                                                <div
-                                                                                    gap-1
-                                                                                    flex
-                                                                                    items-center
-                                                                                >
-                                                                                    <span
-                                                                                        i-lucide-dot
-                                                                                        text-neutral-400
-                                                                                    />
-                                                                                    <p
-                                                                                        text-sm
-                                                                                        leading-none
-                                                                                    >
-                                                                                        {
-                                                                                            shapekey.name
-                                                                                        }
-                                                                                    </p>
-                                                                                </div>
-
-                                                                                <p
-                                                                                    pl-5
-                                                                                    text-sm
-                                                                                    text-neutral-400
-                                                                                >
-                                                                                    {
-                                                                                        shapekey.description
-                                                                                    }
-                                                                                </p>
-                                                                            </li>
-                                                                        )
-                                                                    )}
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    );
-                                            }}
-                                        </ul>
-
-                                        {detail.notes && (
-                                            <li flex="~ col">
-                                                <h3
-                                                    text-lg
-                                                    font-bold
-                                                    text-neutral-1
-                                                >
-                                                    特記事項
-                                                </h3>
-                                                <HTML
-                                                    client:load
-                                                    html={detail.notes}
-                                                    class="text-sm pl-5"
-                                                />
+                                                )}
                                             </li>
-                                        )}
+                                        ))}
                                     </ul>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )
-            }
-
-            {
-                () => {
-                    if (article.packages && article.packages.length) {
-                        const contents = (
-                            <div gap-5 flex="~ col">
-                                <h2 text-2xl font-bold>
-                                    パッケージ
-                                </h2>
-                                <div pl-1>
-                                    <Table
-                                        data={{
-                                            headers: [
-                                                {
-                                                    key: 'name',
-                                                    label: 'パッケージ',
-                                                },
-                                                {
-                                                    key: 'version',
-                                                    label: '制作時のバージョン',
-                                                },
-                                                {
-                                                    key: 'annotation',
-                                                    label: '注釈',
-                                                },
-                                            ],
-                                            rows: article.packages,
-                                        }}
-                                    />
                                 </div>
-                            </div>
-                        );
-                        return contents;
+                            );
+                            return contents;
+                        }
                     }
                 }
-            }
 
-            {
-                article.usage && (
-                    <div gap-2 flex="~ col">
-                        <h2 text-2xl font-bold>
-                            利用方法
-                        </h2>
-                        <div pl-1 text-neutral-2>
-                            <HTML client:load html={article.usage} />
+                {
+                    details && (
+                        <div w-auto gap-5 flex="~ col">
+                            <h2 text-2xl font-bold>
+                                データの詳細
+                            </h2>
+                            <ul pl-1 gap-4 flex="~ col" text-neutral-2>
+                                {details.map((detail) => (
+                                    <li gap-3 flex="~ col">
+                                        {detail.model && (
+                                            <h3 text-xl font-bold>
+                                                {detail.model}
+                                            </h3>
+                                        )}
+
+                                        <ul gap-10 flex="~ col">
+                                            <ul gap-4 flex="~ col">
+                                                {detail.detail.map((item) => (
+                                                    <li gap-2 flex items-center>
+                                                        <span
+                                                            leading-none
+                                                            text-neutral-500
+                                                        >
+                                                            //
+                                                        </span>
+                                                        <p leading-none>
+                                                            {item.name}
+                                                        </p>
+                                                        <div
+                                                            grow
+                                                            h-px
+                                                            bg-neutral-600
+                                                        />
+                                                        <p
+                                                            text-right
+                                                            font-bold
+                                                            whitespace-pre-line
+                                                        >
+                                                            {item.value}
+                                                        </p>
+                                                    </li>
+                                                ))}
+
+                                                {() => {
+                                                    if (
+                                                        detail.shapekeys &&
+                                                        detail.shapekeys.length
+                                                    )
+                                                        return (
+                                                            <li
+                                                                gap-4
+                                                                flex="~ col"
+                                                            >
+                                                                <div
+                                                                    gap-2
+                                                                    flex
+                                                                    items-center
+                                                                >
+                                                                    <span
+                                                                        leading-none
+                                                                        text-neutral-500
+                                                                    >
+                                                                        //
+                                                                    </span>
+                                                                    <p
+                                                                        leading-none
+                                                                    >
+                                                                        シェイプキー
+                                                                    </p>
+                                                                </div>
+                                                                <div flex>
+                                                                    <div
+                                                                        h-auto
+                                                                        w-px
+                                                                        mx-5
+                                                                        bg-neutral-600
+                                                                    />
+                                                                    <ul
+                                                                        gap-3
+                                                                        flex="~ col"
+                                                                    >
+                                                                        {detail.shapekeys.map(
+                                                                            (
+                                                                                shapekey
+                                                                            ) => (
+                                                                                <li
+                                                                                    gap-1
+                                                                                    flex="~ col"
+                                                                                >
+                                                                                    <div
+                                                                                        gap-1
+                                                                                        flex
+                                                                                        items-center
+                                                                                    >
+                                                                                        <span
+                                                                                            i-lucide-dot
+                                                                                            text-neutral-400
+                                                                                        />
+                                                                                        <p
+                                                                                            text-sm
+                                                                                            leading-none
+                                                                                        >
+                                                                                            {
+                                                                                                shapekey.name
+                                                                                            }
+                                                                                        </p>
+                                                                                    </div>
+
+                                                                                    <p
+                                                                                        pl-5
+                                                                                        text-sm
+                                                                                        text-neutral-400
+                                                                                    >
+                                                                                        {
+                                                                                            shapekey.description
+                                                                                        }
+                                                                                    </p>
+                                                                                </li>
+                                                                            )
+                                                                        )}
+                                                                    </ul>
+                                                                </div>
+                                                            </li>
+                                                        );
+                                                }}
+                                            </ul>
+
+                                            {detail.notes && (
+                                                <li flex="~ col">
+                                                    <h3
+                                                        text-lg
+                                                        font-bold
+                                                        text-neutral-1
+                                                    >
+                                                        特記事項
+                                                    </h3>
+                                                    <HTML
+                                                        client:load
+                                                        html={detail.notes}
+                                                        class="text-sm pl-5"
+                                                    />
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                    </div>
-                )
-            }
+                    )
+                }
+
+                {
+                    () => {
+                        if (article.packages && article.packages.length) {
+                            const contents = (
+                                <div gap-5 flex="~ col">
+                                    <h2 text-2xl font-bold>
+                                        パッケージ
+                                    </h2>
+                                    <div pl-1>
+                                        <Table
+                                            data={{
+                                                headers: [
+                                                    {
+                                                        key: 'name',
+                                                        label: 'パッケージ',
+                                                    },
+                                                    {
+                                                        key: 'version',
+                                                        label: '制作時のバージョン',
+                                                    },
+                                                    {
+                                                        key: 'annotation',
+                                                        label: '注釈',
+                                                    },
+                                                ],
+                                                rows: article.packages,
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            );
+                            return contents;
+                        }
+                    }
+                }
+
+                {
+                    article.usage && (
+                        <div gap-2 flex="~ col">
+                            <h2 text-2xl font-bold>
+                                利用方法
+                            </h2>
+                            <div pl-1 text-neutral-2>
+                                <HTML client:load html={article.usage} />
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
         </div>
-    </div>
-</Article>
+    </Article>
+</Main>

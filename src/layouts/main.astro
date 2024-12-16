@@ -1,13 +1,37 @@
 ---
 import { AstroFont } from 'astro-font';
+import { SEO } from 'astro-seo';
 import Analytics from '@vercel/analytics/astro';
 
 import Header from './header.astro';
 import Footer from './footer.astro';
+
+interface Props {
+    title: string;
+    type: 'website' | 'article';
+    description: string;
+    image: string;
+    publishedTime: string;
+    modifiedTime: string;
+    authors: string[];
+    twitterCard: 'summary' | 'summary_large_image';
+}
+
+const {
+    title,
+    type,
+    description,
+    image,
+    publishedTime,
+    modifiedTime,
+    authors,
+    twitterCard,
+} = Astro.props;
 ---
 
 <html lang="en">
     <head>
+        <title>{title}</title>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="sitemap" href="/sitemap-index.xml" />
         <meta charset="utf-8" />
@@ -17,6 +41,36 @@ import Footer from './footer.astro';
             content="script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self';"
         />
         <meta name="generator" content={Astro.generator} />
+        <SEO
+            openGraph={{
+                basic: {
+                    title: title,
+                    type: type,
+                    image: image,
+                },
+                optional: {
+                    description: description,
+                    siteName: 'Liria Documents',
+                    locale: 'ja_JP',
+                },
+                article: {
+                    publishedTime: publishedTime,
+                    modifiedTime: modifiedTime,
+                    authors: authors,
+                },
+                image: {
+                    url: image,
+                    alt: title,
+                },
+            }}
+            twitter={{
+                site: '@liria_work',
+                card: twitterCard,
+                image: image,
+                title: title,
+                description: description,
+            }}
+        />
         <AstroFont
             config={[
                 {

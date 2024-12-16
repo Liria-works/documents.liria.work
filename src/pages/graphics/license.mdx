@@ -1,11 +1,8 @@
----
-layout: '@/layouts/article.astro'
----
-
-import Ogp from '@/components/ogp.astro';
+import Main from '@/layouts/main.astro';
+import Article from '@/layouts/article.astro';
 import Card from '@/components/card.astro';
 
-<Ogp
+<Main
     type="article"
     title="ライセンス | Liria Graphics"
     description="Liria Graphics で取り扱う商品のライセンス"
@@ -14,9 +11,10 @@ import Card from '@/components/card.astro';
     modifiedTime={new Date().toISOString()}
     authors={['Liria', 'Liry24']}
     twitterCard="summary"
-/>
+>
+    <Article>
+        <div class="text-base prose">
 
-<div class="text-base prose">
 # ライセンス
 
 ここでは Liria Graphics で取り扱う商品のライセンスを記載します。
@@ -54,4 +52,7 @@ import Card from '@/components/card.astro';
 Booth の規約により返金が可能なものであれば、Booth にて申請を行ってください。
 DM などでの個別でのやり取りは行いません。
 
-</div>
+        </div>
+    </Article>
+
+</Main>

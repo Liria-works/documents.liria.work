@@ -1,22 +1,19 @@
 ---
 import { Image } from 'astro:assets';
 import Main from '@/layouts/main.astro';
-import Ogp from '@/components/ogp.astro';
 import LogoLiriaGraphics from '../assets/logo_liria_graphics.png';
 ---
 
-<Main>
-    <Ogp
-        type="website"
-        title="Liria Documents"
-        description="Documents of Liria products"
-        image="/image_liria_documents.png"
-        publishedTime={new Date().toISOString()}
-        modifiedTime={new Date().toISOString()}
-        authors={['Liria']}
-        twitterCard="summary"
-    />
-
+<Main
+    type="website"
+    title="Liria Documents"
+    description="Documents of Liria products"
+    image="/image_liria_documents.png"
+    publishedTime={new Date().toISOString()}
+    modifiedTime={new Date().toISOString()}
+    authors={['Liria']}
+    twitterCard="summary"
+>
     <div w-full flex="~ col" items-center justify-center>
         <a
             href="/graphics"

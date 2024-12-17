@@ -41,7 +41,7 @@ if (article.details)
     type="article"
     title={`${article.title.ja} | Liria Graphics`}
     description={article.description}
-    image={article.thumbnail.url}
+    image={`${Astro.url.href}/og`}
     publishedTime={new Date(article.createdAt).toISOString()}
     modifiedTime={new Date(article.updatedAt).toISOString()}
     authors={['Liria', 'Liry24']}

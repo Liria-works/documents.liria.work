@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 
 import mdx from '@astrojs/mdx';
 import vue from '@astrojs/vue';
+import react from '@astrojs/react';
 import UnoCSS from 'unocss/astro';
 import compressor from 'astro-compressor';
 import remarkToc from 'remark-toc';
@@ -29,6 +30,7 @@ export default defineConfig({
     integrations: [
         mdx(),
         vue(),
+        react(),
         UnoCSS({
             injectReset: true,
         }),

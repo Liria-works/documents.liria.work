@@ -10,7 +10,7 @@ interface Props {
     title: string;
     type: 'website' | 'article';
     description: string;
-    image: string;
+    image?: string;
     publishedTime: string;
     modifiedTime: string;
     authors: string[];
@@ -27,6 +27,8 @@ const {
     authors,
     twitterCard,
 } = Astro.props;
+
+const defaultImage = `${Astro.url.href}/image_liria_documents.png`;
 ---
 
 <html lang="en">
@@ -46,7 +48,7 @@ const {
                 basic: {
                     title: title,
                     type: type,
-                    image: image,
+                    image: image || defaultImage,
                 },
                 optional: {
                     description: description,

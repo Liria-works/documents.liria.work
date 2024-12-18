@@ -2,15 +2,7 @@
 import Main from '@/layouts/main.astro';
 ---
 
-<Main
-    type="article"
-    title="404 | Liria Documents"
-    description="Page not found."
-    publishedTime={new Date().toISOString()}
-    modifiedTime={new Date().toISOString()}
-    authors={['Liria']}
-    twitterCard="summary"
->
+<Main title="404 | Liria Documents" description="Page not found.">
     <div p="y-24" gap-6 flex="~ col" items-center>
         <h1 text="9xl neutral-4" font-extrabold>404</h1>
         <p text="xl neutral-4">page not found</p>

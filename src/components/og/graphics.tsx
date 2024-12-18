@@ -61,7 +61,7 @@ const layout = () => {
                     viewBox="0 0 126 25"
                     fill="white"
                     style={{
-                        marginBottom: '4rem',
+                        marginBottom: '3rem',
                     }}
                 >
                     <g transform="matrix(0.144224,0,0,0.144224,-10.8554,-58.5282)">

@@ -8,13 +8,13 @@ import Footer from './footer.astro';
 
 interface Props {
     title: string;
-    type: 'website' | 'article';
+    type?: 'website' | 'article';
     description: string;
     image?: string;
-    publishedTime: string;
-    modifiedTime: string;
-    authors: string[];
-    twitterCard: 'summary' | 'summary_large_image';
+    publishedTime?: string;
+    modifiedTime?: string;
+    authors?: string[];
+    twitterCard?: 'summary' | 'summary_large_image';
 }
 
 const {
@@ -28,7 +28,14 @@ const {
     twitterCard,
 } = Astro.props;
 
-const defaultImage = `${Astro.url.href}/image_liria_documents.png`;
+const defaults: Partial<Props> = {
+    type: 'article',
+    image: `${Astro.url.origin}/og.png`,
+    publishedTime: new Date().toISOString(),
+    modifiedTime: new Date().toISOString(),
+    authors: ['Liria'],
+    twitterCard: 'summary',
+};
 ---
 
 <html lang="en">
@@ -47,8 +54,8 @@ const defaultImage = `${Astro.url.href}/image_liria_documents.png`;
             openGraph={{
                 basic: {
                     title: title,
-                    type: type,
-                    image: image || defaultImage,
+                    type: type || defaults.type!,
+                    image: image ? Astro.url.origin + image : defaults.image!,
                 },
                 optional: {
                     description: description,
@@ -56,19 +63,19 @@ const defaultImage = `${Astro.url.href}/image_liria_documents.png`;
                     locale: 'ja_JP',
                 },
                 article: {
-                    publishedTime: publishedTime,
-                    modifiedTime: modifiedTime,
-                    authors: authors,
+                    publishedTime: publishedTime || defaults.publishedTime,
+                    modifiedTime: modifiedTime || defaults.modifiedTime,
+                    authors: authors || defaults.authors,
                 },
                 image: {
-                    url: image,
+                    url: image ? Astro.url.origin + image : defaults.image!,
                     alt: title,
                 },
             }}
             twitter={{
                 site: '@liria_work',
-                card: twitterCard,
-                image: image,
+                card: twitterCard || defaults.twitterCard!,
+                image: image ? Astro.url.origin + image : defaults.image!,
                 title: title,
                 description: description,
             }}

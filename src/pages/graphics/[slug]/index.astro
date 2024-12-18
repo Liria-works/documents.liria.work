@@ -38,10 +38,9 @@ if (article.details)
 ---
 
 <Main
-    type="article"
     title={`${article.title.ja} | Liria Graphics`}
     description={article.description}
-    image={`${Astro.url.href}/og`}
+    image={`/og/graphics-${article.id}.png`}
     publishedTime={new Date(article.createdAt).toISOString()}
     modifiedTime={new Date(article.updatedAt).toISOString()}
     authors={['Liria', 'Liry24']}

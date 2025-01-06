@@ -20,10 +20,14 @@ if (ICON_SIZE === undefined) ICON_SIZE = 'size-4';
 
 <div class={`${trailing ? 'w-full' : 'w-fit'}`}>
     <a
+        tabindex="0"
         href={href}
         target={newTab ? '_blank' : '_self'}
         rel={newTab ? 'noopener noreferrer' : ''}
-        class={`flex items-center gap-2 text-neutral-400 hover:text-neutral-200 ${trailing && 'justify-between'}`}
+        text="neutral-4 hover:neutral-2"
+        bg="focus-visible:neutral-8"
+        p="y-1 x-2"
+        class={`rounded-md flex items-center gap-2 ${trailing && 'justify-between'} ring-inset focus-visible:ring-1 ring-neutral-7 focus-visible:outline-none transition-all duration-100 delay-0 ease-in-out`}
     >
         {ICON && !trailing && <span class={`${ICON} ${ICON_SIZE}`} />}
         <p

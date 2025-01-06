@@ -23,7 +23,19 @@ const links = [
 ---
 
 <header w-full gap-4 flex items-center justify-between>
-    <a href="/" flex items-center gap-2 select-none>
+    <a
+        tabindex="0"
+        href="/"
+        p="l-1 r-2 y-1"
+        flex
+        items-center
+        gap-2
+        select-none
+        rounded-md
+        focus-visible:outline-none
+        focus-visible:bg-neutral-7
+        ring="inset 0 focus-visible:1 neutral-6"
+    >
         <Image
             src={LogoLiria}
             alt="Liria Logo"
@@ -31,20 +43,33 @@ const links = [
             height="30"
             loading="eager"
         />
-        <span text-xl font-bold tracking-wide pt-0.5 whitespace-nowrap
-            >Liria Docs</span
+        <span
+            text-xl
+            font-bold
+            tracking-wide
+            leading-none
+            pt-0.5
+            whitespace-nowrap
         >
+            Liria Docs
+        </span>
     </a>
 
-    <div gap-4 sm:gap-6 flex="~ wrap" items-center justify-end>
+    <div gap-1 sm:gap-3 flex="~ wrap" items-center justify-end>
         {
             links.map((link) => (
                 <a
+                    tabindex="0"
                     href={link.href}
                     target="_blank"
                     aria-label={link.label}
-                    class={`${link.icon} size-4.5 bg-neutral-400 hover:bg-neutral-100 transition duration-100 delay-0 ease-in-out`}
-                />
+                    ring="inset 0 focus-visible:1 neutral-6"
+                    class={`group p-2 rounded-md flex focus-visible:bg-neutral-7 focus-visible:outline-none transition duration-100 delay-0 ease-in-out`}
+                >
+                    <span
+                        class={`${link.icon} size-4.5 bg-neutral-4 group-hover:bg-neutral-1`}
+                    />
+                </a>
             ))
         }
     </div>

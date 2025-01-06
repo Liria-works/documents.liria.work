@@ -17,11 +17,12 @@ const articles = await getArticles();
     <Article>
         <div gap-8 flex="~ col">
             <a
+                tabindex="0"
                 href="https://eicosapenta.booth.pm"
                 target="_blank"
                 gap-4
                 flex="~ col"
-                class="group [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+                class="group focus-visible:outline-none [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
             >
                 <div max-w-sm md:max-w-lg p="r-12 t-6 md:t-0" select-none>
                     <Image
@@ -35,8 +36,13 @@ const articles = await getArticles();
                 <div flex gap-3 items-center>
                     <span
                         class="i-custom-booth?mask size-5"
-                        bg="neutral-4 group-hover:[#fc4d50]"></span>
-                    <span text="neutral-4 group-hover:red-4">booth.pm</span>
+                        bg="neutral-4 group-hover:[#fc4d50] group-focus-visible:[#fc4d50]"
+                    ></span>
+                    <span
+                        text="neutral-4 group-hover:red-4 group-focus-visible:red-4"
+                    >
+                        booth.pm
+                    </span>
                     <span
                         i-lucide-arrow-up-right
                         size-4
@@ -44,6 +50,7 @@ const articles = await getArticles();
                         opacity-0
                         transform="translate-x-[-1rem]"
                         group-hover="opacity-100 transform-translate-x-0"
+                        group-focus-visible="opacity-100 transform-translate-x-0"
                     ></span>
                 </div>
             </a>
@@ -67,13 +74,15 @@ const articles = await getArticles();
                     {
                         articles.contents.map((item) => (
                             <a
+                                tabindex="0"
                                 href={`/graphics/${item.id}`}
                                 relative
                                 rounded-lg
                                 gap-2
+                                p="2 b-3"
                                 flex="~ col"
                                 items-center
-                                class="group p-2 pb-3 border b-neutral-7 hover:b-neutral-4 transition-all duration-200 delay-0 ease-in-out [&_*]:transition-all [&_*]:duration-200 [&_*]:delay-0 [&_*]:ease-in-out"
+                                class="group border b-neutral-7 hover:b-neutral-4 focus-visible:b-neutral-4 focus-visible:bg-neutral-8 focus-visible:outline-none transition duration-200 ease-in-out [&_*]:transition-all [&_*]:duration-200 [&_*]:ease-in-out"
                             >
                                 <span
                                     i-lucide-arrow-up-right
@@ -85,6 +94,7 @@ const articles = await getArticles();
                                     opacity-0
                                     transform="translate-x-[-1rem]"
                                     group-hover="opacity-100 transform-translate-x-0"
+                                    group-focus-visible="opacity-100 transform-translate-x-0"
                                 />
                                 <Image
                                     src={item.thumbnail.url}
@@ -97,7 +107,7 @@ const articles = await getArticles();
                                 />
                                 <h3
                                     font-semibold
-                                    text="neutral-3 group-hover:neutral-1"
+                                    text="neutral-3 group-hover:neutral-1 group-focus-visible:neutral-1"
                                 >
                                     {item.title.ja}
                                 </h3>

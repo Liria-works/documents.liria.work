@@ -2,7 +2,7 @@
 
 ---
 
-<footer flex items-center self-center text-xs gap-5 text-neutral-400>
+<footer flex items-center self-center text-xs gap-5 text-neutral-4>
     <div flex items-center gap-2>
         <span class="i-custom-liria?mask flex-shrink-0"></span>
         <p>© 2024 Liria</p>
@@ -10,10 +10,16 @@
 
     <div>
         <a
+            tabindex="0"
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja"
             target="_blank"
             rel="noopener noreferrer"
+            p="x-2 y-1"
+            rounded-md
             hover:underline
+            focus-visible:outline-none
+            ring="inset 0 focus-visible:1 neutral-6"
+            bg="focus-visible:neutral-7"
         >
             CC BY-NC-SA 4.0
         </a>

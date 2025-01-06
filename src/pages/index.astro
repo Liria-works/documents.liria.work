@@ -11,6 +11,7 @@ import LogoLiriaGraphics from '../assets/logo_liria_graphics.png';
 >
     <div w-full flex="~ col" items-center justify-center>
         <a
+            tabindex="0"
             href="/graphics"
             self-stretch
             h="[70vh]"
@@ -32,6 +33,7 @@ import LogoLiriaGraphics from '../assets/logo_liria_graphics.png';
                 to-neutral-7
                 opacity-40
                 group-hover:opacity-100
+                group-focus-visible:opacity-100
             >
             </div>
             <div absolute top-0 left-0 p-5 flex items-center gap-3>
@@ -42,6 +44,7 @@ import LogoLiriaGraphics from '../assets/logo_liria_graphics.png';
                     flex
                     w="64 md:72"
                     group-hover="transform-translate-x-[-1rem]"
+                    group-focus-visible="transform-translate-x-[-1rem]"
                     opacity-60
                     group-hover:opacity-100
                 >
@@ -58,6 +61,7 @@ import LogoLiriaGraphics from '../assets/logo_liria_graphics.png';
                     size-8
                     opacity-0
                     group-hover="opacity-100 transform-translate-x-[1rem]"
+                    group-focus-visible="opacity-100 transform-translate-x-[1rem]"
                     flex-shrink-0></span>
             </div>
         </a>

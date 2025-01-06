@@ -18,11 +18,15 @@ const props = withDefaults(
 
 <template>
     <a
+        tabindex="0"
         :href="props.href"
         :target="props.external ? '_blank' : '_self'"
         :rel="props.external ? 'noopener noreferrer' : ''"
         :class="[
-            'flex items-center gap-2 text-neutral-400 hover:text-neutral-200 transition-all duration-100 delay-0 ease-in-out',
+            'rounded-md px-2 py-1 flex items-center gap-2',
+            'text-neutral-4 hover:text-neutral-2',
+            'ring-inset focus-visible:ring-1 ring-neutral-7 focus-visible:bg-neutral-8 focus-visible:outline-none',
+            'transition duration-100 delay-0 ease-in-out',
             props.external && 'justify-between',
         ]"
     >
